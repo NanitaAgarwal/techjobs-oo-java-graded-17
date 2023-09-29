@@ -1,6 +1,7 @@
 package org.launchcode.techjobs.oo;
 import org.junit.Test;
 import org.testng.annotations.BeforeTest;
+import org.w3c.dom.ls.LSOutput;
 
 import static org.junit.Assert.*;
 //import static org.junit.Assert.assertTrue;
@@ -51,5 +52,47 @@ public class JobTest {
         Job job05 = new Job("Web Developer",new Employer("Launch Code"), new Location("St Louis"), new PositionType("Full Time"), new CoreCompetency("Java"));
         assertEquals(job04.equals(job05),false);
     }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        String newline = System.lineSeparator();
+        Job job06 = new Job("Web Developer",new Employer("Launch Code"), new Location("St Louis"), new PositionType("Full Time"), new CoreCompetency("Java"));
+        String print = job06.toString();
+        assertTrue(print.startsWith(newline));
+        assertTrue(print.endsWith(newline));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        Job job07 = new Job("Web Developer",new Employer("Launch Code"), new Location("St Louis"), new PositionType("Full Time"), new CoreCompetency("Java"));
+        String print = job07.toString();
+        assertTrue(print.contains("ID: "));
+        assertTrue(print.contains("Name: "));
+        assertTrue(print.contains("Employer: "));
+        assertTrue(print.contains("Position Type: "));
+        assertTrue(print.contains("Core Competency: "));
+        assertTrue(print.contains(job07.getName()));
+        assertTrue(print.contains(job07.getEmployer().getValue()));
+        assertTrue(print.contains(job07.getLocation().getValue()));
+        assertTrue(print.contains(job07.getPositionType().getValue()));
+        assertTrue(print.contains(job07.getCoreCompetency().getValue()));
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField(){
+        Job job08 = new Job("Web Developer",new Employer(), new Location("St Louis"), new PositionType("Full Time"), new CoreCompetency("Java"));
+        String print = job08.toString();
+//        System.out.println(job08);
+        assertTrue(print.contains("Employer: Data not available"));
+    }
+
+    @Test
+    public void testToStringHandlesOptionalAllBlanks(){
+        Job job09 = new Job(null, new Employer(), new Location(), new PositionType(), new CoreCompetency());
+        String print = job09.toString();
+//        System.out.println(job09);
+        assertEquals("OOPS! This job does not seem to exist.",print);
+    }
+
 
 }
