@@ -34,7 +34,7 @@ public class Job {
     @Override
     public String toString(){
         String newline = System.lineSeparator();
-        if ((this.getName()==null) && (this.getEmployer().getValue()==null) && (this.getLocation().getValue()==null) && (this.getPositionType().getValue()==null) && (this.getCoreCompetency().getValue()==null)){
+        if ((this.getName().isEmpty()) && (this.getEmployer().getValue().isEmpty()) && (this.getLocation().getValue().isEmpty()) && (this.getPositionType().getValue().isEmpty()) && (this.getCoreCompetency().getValue().isEmpty())){
           return "OOPS! This job does not seem to exist.";
         }
         return newline +

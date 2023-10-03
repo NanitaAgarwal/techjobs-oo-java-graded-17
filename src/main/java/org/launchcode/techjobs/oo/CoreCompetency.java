@@ -8,11 +8,11 @@ public class CoreCompetency extends JobField{
 //    private static int nextId = 1;
 //    private String value;
 
-    public CoreCompetency() {
-//        this.id = nextId;
-//        nextId++;
-        super();
-    }
+//    public CoreCompetency() {
+////        this.id = nextId;
+////        nextId++;
+//        super();
+//    }
 
     public CoreCompetency(String value) {
 //        this();

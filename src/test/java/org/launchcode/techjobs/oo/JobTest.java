@@ -9,11 +9,6 @@ import static org.junit.Assert.*;
 public class JobTest {
     //TODO: Create your unit tests here
 
-    @BeforeTest
-    public void before(){
-
-    }
-
     @Test
     public void emptyTest(){
         assertEquals(1,1);
@@ -69,6 +64,7 @@ public class JobTest {
         assertTrue(print.contains("ID: "));
         assertTrue(print.contains("Name: "));
         assertTrue(print.contains("Employer: "));
+        assertTrue(print.contains("Location: "));
         assertTrue(print.contains("Position Type: "));
         assertTrue(print.contains("Core Competency: "));
         assertTrue(print.contains(job07.getName()));
@@ -80,7 +76,7 @@ public class JobTest {
 
     @Test
     public void testToStringHandlesEmptyField(){
-        Job job08 = new Job("Web Developer",new Employer(), new Location("St Louis"), new PositionType("Full Time"), new CoreCompetency("Java"));
+        Job job08 = new Job("Web Developer",new Employer(""), new Location("St Louis"), new PositionType("Full Time"), new CoreCompetency("Java"));
         String print = job08.toString();
 //        System.out.println(job08);
         assertTrue(print.contains("Employer: Data not available"));
@@ -88,7 +84,7 @@ public class JobTest {
 
     @Test
     public void testToStringHandlesOptionalAllBlanks(){
-        Job job09 = new Job(null, new Employer(), new Location(), new PositionType(), new CoreCompetency());
+        Job job09 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
         String print = job09.toString();
 //        System.out.println(job09);
         assertEquals("OOPS! This job does not seem to exist.",print);
